@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Spectrum.Mobile.Views.ProductDetailPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="{Binding Product.Title}"
+                       FontAttributes="Bold"
+                       Margin="10"/>
+                <CarouselView HeightRequest="200"
+                              PeekAreaInsets="20"
+                              HorizontalScrollBarVisibility="Never"
+                              IndicatorView="indicatorView"
+                              ItemsSource="{Binding Product.Images}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding .}"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                               IndicatorColor="LightGray"
+                               SelectedIndicatorColor="DarkGray"
+                               HorizontalOptions="Center"/>
+                <StackLayout Margin="10">
+                    <Label Text="Description" 
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding Product.Description}"
+                           Margin="0,0,0,15"/>
+                
+                    <Label Text="Brand" 
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding Product.Brand}"
+                           Margin="0,0,0,15"/>
+                
+                    <Label Text="Category" 
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding Product.Category}"
+                           Margin="0,0,0,15"/>
+                
+                    <Label Text="Rate" 
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding Product.Rating}"
+                           Margin="0,0,0,15"/>
+                    
+                    <Label Text="Discount Percentage" 
+                           FontAttributes="Bold"/>
+                    <Label Text="{Binding Product.DiscountPercentage}"
+                           Margin="0,0,0,15"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

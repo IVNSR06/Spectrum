@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behavior="clr-namespace:Spectrum.Mobile.Behaviors;assembly=Spectrum.Mobile"
+             xmlns:controls="clr-namespace:Spectrum.Mobile.Controls"
+             xmlns:res="clr-namespace:Spectrum.Mobile"
+             xmlns:effects="clr-namespace:Spectrum.Mobile.Effects"
+             x:Class="Spectrum.Mobile.Views.HomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding WelcomeMessage}" 
+                   FontAttributes="Bold"/>
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsBusy}" />
+            <Grid ColumnDefinitions="8*,1*,1*">
+                <Label Grid.Column="0"
+                       Text="{x:Static res:Resources.FilterBy}"
+                       VerticalOptions="Center"/>
+                <ImageButton Grid.Column="1"
+                             Source="FilterIcon"
+                             HeightRequest="30"
+                             BackgroundColor="Transparent"
+                             Command="{Binding FilterByCommand}"
+                             VerticalOptions="Center"
+                             WidthRequest="30"/>
+                <ImageButton Grid.Column="2"
+                             Source="SortIcon"
+                             Command="{Binding SortByCommand}"
+                             HeightRequest="30"
+                             BackgroundColor="Transparent"
+                             VerticalOptions="Center"
+                             WidthRequest="30"/>
+            </Grid>
+            <controls:CustomPicker ItemsSource="{Binding AvailableCategoriesList}"
+                                   SelectedItem="{Binding CategorySelected}"
+                                   Margin="25,0"
+                                   Placeholder="{x:Static res:Resources.SelectCategory}"
+                                   IsVisible="{Binding IsFilterAreaVisible}">
+                <controls:CustomPicker.Effects>
+                    <effects:BorderLineEffect />
+                </controls:CustomPicker.Effects>
+            </controls:CustomPicker>
+
+            <CollectionView ItemsSource="{Binding ProductSortedFilteredList}"
+                            Margin="0,15,0,0"
+                            SelectionMode="Single">
+                <CollectionView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectProductCommand}"/>  
+                </CollectionView.Behaviors>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="2*,4*,3*,1*"
+                              Margin="10"
+                              Padding="0">
+                            <Image Grid.Column="0"
+                                   VerticalOptions="Center"
+                                   Source="{Binding Thumbnail}"/>
+                            <StackLayout VerticalOptions="Center" 
+                                         Grid.Column="1">
+                                <Label Text="{Binding Title}"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding string}"/>
+                                <Label Text="{Binding Description}" 
+                                       FontSize="13"/>
+                            </StackLayout>
+                            <Label Grid.Column="2"
+                                   VerticalOptions="Center"
+                                   Text="{Binding Price, Converter={StaticResource NumberToCurrencyConverter}}"/>
+                            <Image Grid.Column="3"
+                                   HeightRequest="20"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Source="RightArrow"/>
+                            <BoxView Grid.ColumnSpan="4"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="End"
+                                     HeightRequest="1"
+                                     BackgroundColor="Black"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
