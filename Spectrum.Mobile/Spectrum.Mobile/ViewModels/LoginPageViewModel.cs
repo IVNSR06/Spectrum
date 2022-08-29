@@ -33,6 +33,14 @@ namespace Spectrum.Mobile.ViewModels
             try
             {
                 IsBusy = true;
+
+                if (string.IsNullOrEmpty(LoginRequest.Username) || string.IsNullOrEmpty(LoginRequest.Password))
+                {
+                    IsErrorLabelVisible = true;
+                    ErrorMessage = Resources.FieldRequired;
+                    return;
+                }
+
                 var result = await _spectrumService.PostAsync<User>(LoginRequest, Constants.Login);
 
                 if (result != null && !string.IsNullOrEmpty(result.Token))

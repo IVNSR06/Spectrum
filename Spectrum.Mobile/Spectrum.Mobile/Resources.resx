@@ -22,4 +22,7 @@
 	<data name="SelectCategory" xml:space="preserve">
         <value>Select a Category</value>
     </data>
+	<data name="FieldRequired" xml:space="preserve">
+        <value>Field required</value>
+    </data>
 </root>

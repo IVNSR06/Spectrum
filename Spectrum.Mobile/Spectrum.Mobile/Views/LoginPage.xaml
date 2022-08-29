@@ -9,10 +9,12 @@
         <StackLayout VerticalOptions="Center"
                      Padding="20">
             <Entry Placeholder="User"
-                   Text="{Binding LoginRequest.Username, Mode=TwoWay}" />
+                   Text="{Binding LoginRequest.Username, Mode=TwoWay}"
+                   ReturnType="Next" />
             <Entry Placeholder="Password" 
                    IsPassword="True"
-                   Text="{Binding LoginRequest.Password, Mode=TwoWay}"/>
+                   Text="{Binding LoginRequest.Password, Mode=TwoWay}"
+                   ReturnCommand="{Binding LoginCommand}"/>
             <Label Text="{Binding ErrorMessage}"
                    IsVisible="{Binding IsErrorLabelVisible}"/>
             <Button Text="Login"

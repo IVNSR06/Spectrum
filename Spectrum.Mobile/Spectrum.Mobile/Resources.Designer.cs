@@ -58,6 +58,15 @@ namespace Spectrum.Mobile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Field required.
+        /// </summary>
+        internal static string FieldRequired {
+            get {
+                return ResourceManager.GetString("FieldRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter by.
         /// </summary>
         internal static string FilterBy {
